@@ -92,7 +92,7 @@
       margin: 1rem 0 3rem;
     }
 
-    /* Card */
+    /* Card ajustado sem imagem */
     .card {
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius: var(--radius);
@@ -103,7 +103,7 @@
       cursor: default;
       display: flex;
       flex-direction: column;
-      min-height: 320px;
+      min-height: 200px; /* Altura reduzida já que não tem mais imagem */
     }
     
     .card:hover {
@@ -112,11 +112,10 @@
       border: 1px solid rgba(77, 184, 255, 0.2);
     }
     
-    .thumb { height: 160px; background-size: cover; background-position: center; filter: contrast(1.02) saturate(1.05); }
-    .card-body { padding: 1rem; display: flex; flex-direction: column; flex: 1; }
-    .card-body h3 { margin: 0 0 .5rem; }
+    .card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .card-body h3 { margin: 0 0 .5rem; font-size: 1.2rem; }
     .card-body p { margin: 0; color: var(--muted); font-size: 0.95rem; flex: 1; }
-    .card-actions { display: flex; gap: .5rem; margin-top: 1rem; align-items: center; }
+    .card-actions { display: flex; gap: .5rem; margin-top: 1.5rem; align-items: center; }
 
     /* Buttons */
     .btn {
@@ -155,7 +154,7 @@
     /* Responsive tweaks */
     @media (max-width: 640px) {
       .intro .lead { max-width: 100%; }
-      .card { min-height: 300px; }
+      .card { min-height: 180px; }
     }
   </style>
 </head>
@@ -163,7 +162,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <h1>Isabelly Ramos dos Santos - 3A</h1>
+        <h1>Isabelly Ramos dos Santos</h1>
         <p>Desenvolvimento de Sistemas — Portfólio</p>
       </div>
       <div class="controls">
@@ -181,7 +180,6 @@
     <section class="portfolio-grid" id="portfolio">
       
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj1.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Agenda Escolar.</h3>
           <p>Gamma</p>
@@ -192,7 +190,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj1.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Startup.</h3>
           <p>Gamma</p>
@@ -203,7 +200,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Propriedades Intelectuais.</h3>
           <p>Gamma</p>
@@ -214,7 +210,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj1.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Métricas e Melhorias nos Negócios.</h3>
           <p>Gamma</p>
@@ -225,7 +220,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj1.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Plano de Negócios: Agenda Escolar.</h3>
           <p>Gamma</p>
@@ -236,7 +230,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Usando For no Js</h3>
           <p>Códigos passados em sala de aula por: Robinho.</p>
@@ -247,7 +240,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Usando Break no Js</h3>
           <p>Códigos passados em sala de aula por: Robinho.</p>
@@ -258,7 +250,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Média Se</h3>
           <p>Códigos passados em sala de aula por: Robinho.</p>
@@ -269,7 +260,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Filtrar Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -280,7 +270,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Leitura Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -291,7 +280,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Alterar Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -302,7 +290,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Cliente JSON</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -313,7 +300,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Objet2 Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -324,7 +310,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Substring Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -335,7 +320,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>Colchete Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -346,7 +330,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>SelectionSort Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -357,7 +340,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>ListaLivros Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -368,7 +350,6 @@
       </article>
 
       <article class="card">
-        <div class="thumb" style="background-image:url('assets/proj2.jpg')" aria-hidden="true"></div>
         <div class="card-body">
           <h3>ConjuntoNúmeros Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
