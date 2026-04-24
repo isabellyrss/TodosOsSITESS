@@ -131,11 +131,11 @@
       background: rgba(255, 255, 255, 0.5);
     }
 
-    /* CORREÇÃO AQUI: Cor do texto escurecida para contraste */
+    /* Cor do texto escurecida para contraste */
     .filter-btn:hover, .filter-btn.active {
       background: linear-gradient(90deg, var(--rosa), var(--azul));
       color: #071025; /* Texto bem escuro para contrastar com as cores do degradê */
-      font-weight: 800; /* Letra um pouco mais forte para facilitar a leitura */
+      font-weight: 800;
       border-color: transparent;
       box-shadow: 0 4px 12px rgba(255, 107, 158, 0.3);
     }
@@ -222,6 +222,68 @@
     }
     .btn.icon:hover { transform: scale(1.1); background: transparent; }
 
+    /* Modal (Lightbox para o QR Code) */
+    .modal {
+      display: none; /* Escondido por padrão */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(11, 18, 32, 0.85); /* Fundo escuro transparente */
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Classe adicionada via JS para mostrar o modal */
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      transform: scale(0.90);
+      transition: transform 0.3s ease;
+      border: 2px solid rgba(255,255,255,0.1);
+      background-color: white; /* Fundo branco pra garantir contraste no QR Code */
+      padding: 15px;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .modal-close:hover {
+      color: var(--rosa);
+    }
+
+    body.light .modal {
+      background-color: rgba(248, 250, 252, 0.85);
+    }
+    body.light .modal-close {
+      color: #0b1220;
+    }
+
     /* Footer */
     .site-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 1.25rem 0; color: var(--muted); text-align: center; backdrop-filter: blur(4px); }
     body.light .site-footer { border-top: 1px solid rgba(0,0,0,0.05); }
@@ -230,6 +292,7 @@
     @media (max-width: 640px) {
       .intro .lead { max-width: 100%; }
       .card { min-height: 180px; }
+      .modal-close { top: 10px; right: 20px; }
     }
   </style>
 </head>
@@ -256,6 +319,7 @@
       <button class="filter-btn active" data-filter="gamma">Gamma</button>
       <button class="filter-btn" data-filter="js">JS</button>
       <button class="filter-btn" data-filter="json">JSON</button>
+      <button class="filter-btn" data-filter="expo">Expo</button>
     </div>
 
     <section class="portfolio-grid" id="portfolio">
@@ -440,6 +504,26 @@
         </div>
       </article>
 
+      <article class="card" data-category="expo">
+        <div class="card-body">
+          <h3>Acesso ao App "Lista" (Expo)</h3>
+          <p>Clique no botão abaixo e escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
+          <div class="card-actions">
+            <button class="btn btn-visualizar" data-img="QRCODE2.png">Visualizar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="expo">
+        <div class="card-body">
+          <h3>Acesso ao App "Imagens trocadas"(Expo)</h3>
+          <p>Clique no botão abaixo e escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
+          <div class="card-actions">
+            <button class="btn btn-visualizar" data-img="QRCODE.png">Visualizar</button>
+          </div>
+        </div>
+      </article>
+
     </section>
   </main>
 
@@ -448,6 +532,11 @@
       <p>© <strong>Isabelly Ramos dos Santos - Desenvolvimento de Sistemas - 2026</strong> — Todos os direitos reservados</p>
     </div>
   </footer>
+
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="expandedImg" alt="QR Code Ampliado">
+  </div>
 
   <script>
     // Tema claro/escuro
@@ -475,7 +564,6 @@
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
 
-    // Função que aplica a lógica de esconder/mostrar os cards
     const aplicarFiltro = (filterValue) => {
       cards.forEach(card => {
         const cardCategory = card.getAttribute('data-category');
@@ -492,11 +580,10 @@
       });
     };
 
-    // Aplica o filtro inicial na hora que a página carrega
+    // Aplica o filtro inicial
     const filtroInicial = document.querySelector('.filter-btn.active').getAttribute('data-filter');
     aplicarFiltro(filtroInicial);
 
-    // Evento de clique para os botões de filtro
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
@@ -505,12 +592,41 @@
       });
     });
 
-    // Animação inicial apenas para os cards visíveis
     window.addEventListener('load', () => {
       const visiveis = document.querySelectorAll('.card:not(.hidden)');
       visiveis.forEach((c, i) => {
         c.style.transitionDelay = `${i * 60}ms`;
       });
+    });
+
+    // -----------------------------------------------------
+    // Lógica do Modal (Ampliar Imagem)
+    // -----------------------------------------------------
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("expandedImg");
+    const closeModal = document.querySelector(".modal-close");
+    const btnVisualizar = document.querySelectorAll(".btn-visualizar");
+
+    // Ao clicar em Visualizar, pega o link da imagem e abre o modal
+    btnVisualizar.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const imgSrc = this.getAttribute("data-img");
+        modalImg.src = imgSrc;
+        modal.classList.add("active");
+      });
+    });
+
+    // Fechar ao clicar no "X"
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("active");
+    });
+
+    // Fechar ao clicar fora da imagem (no fundo escuro)
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
     });
   </script>
 </body>
