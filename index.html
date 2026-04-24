@@ -84,6 +84,37 @@
     .intro { padding: 1rem 0; }
     .intro .lead { color: var(--muted); max-width: 70%; }
 
+    /* Filtros de Categoria */
+    .filter-menu {
+      display: flex;
+      gap: 0.8rem;
+      margin: 1rem 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--glass);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    :root.light .filter-btn {
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: linear-gradient(90deg, var(--rosa), var(--azul));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(255, 107, 158, 0.3);
+    }
+
     /* Grid */
     .portfolio-grid {
       display: grid;
@@ -99,11 +130,16 @@
       overflow: hidden;
       box-shadow: 0 8px 30px rgba(2,6,23,0.6);
       transform: translateY(0);
-      transition: transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s;
+      transition: transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s, opacity 0.3s ease;
       cursor: default;
       display: flex;
       flex-direction: column;
-      min-height: 200px; /* Altura reduzida já que não tem mais imagem */
+      min-height: 200px;
+    }
+
+    /* Classe para esconder os cards filtrados */
+    .card.hidden {
+      display: none;
     }
     
     .card:hover {
@@ -177,9 +213,16 @@
       <p class="lead">Aqui estão alguns sites e códigos que criei (exercícios)! Clique em "Abrir" para ver o projeto em uma nova aba.</p>
     </section>
 
+    <div class="filter-menu">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="gamma">Gamma</button>
+      <button class="filter-btn" data-filter="js">JS</button>
+      <button class="filter-btn" data-filter="json">JSON</button>
+    </div>
+
     <section class="portfolio-grid" id="portfolio">
       
-      <article class="card">
+      <article class="card" data-category="gamma">
         <div class="card-body">
           <h3>Agenda Escolar.</h3>
           <p>Gamma</p>
@@ -189,7 +232,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="gamma">
         <div class="card-body">
           <h3>Startup.</h3>
           <p>Gamma</p>
@@ -199,7 +242,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="gamma">
         <div class="card-body">
           <h3>Propriedades Intelectuais.</h3>
           <p>Gamma</p>
@@ -209,7 +252,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="gamma">
         <div class="card-body">
           <h3>Métricas e Melhorias nos Negócios.</h3>
           <p>Gamma</p>
@@ -219,7 +262,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="gamma">
         <div class="card-body">
           <h3>Plano de Negócios: Agenda Escolar.</h3>
           <p>Gamma</p>
@@ -229,7 +272,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Usando For no Js</h3>
           <p>Códigos passados em sala de aula por: Robinho.</p>
@@ -239,7 +282,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Usando Break no Js</h3>
           <p>Códigos passados em sala de aula por: Robinho.</p>
@@ -249,7 +292,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Média Se</h3>
           <p>Códigos passados em sala de aula por: Robinho.</p>
@@ -259,7 +302,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Filtrar Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -269,7 +312,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Leitura Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -279,7 +322,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Alterar Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -289,17 +332,7 @@
         </div>
       </article>
 
-      <article class="card">
-        <div class="card-body">
-          <h3>Cliente JSON</h3>
-          <p>Códigos passados no Classroom por: Robinho.</p>
-          <div class="card-actions">
-            <a class="btn" href="https://github.com/isabellyrss/cliente.json/blob/main/cliente.json" target="_blank" rel="noopener">Abrir Código</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Objet2 Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -309,7 +342,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Substring Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -319,7 +352,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>Colchete Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -329,7 +362,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>SelectionSort Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -339,7 +372,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>ListaLivros Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
@@ -349,12 +382,22 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-category="js">
         <div class="card-body">
           <h3>ConjuntoNúmeros Js</h3>
           <p>Códigos passados no Classroom por: Robinho.</p>
           <div class="card-actions">
             <a class="btn" href="https://github.com/isabellyrss/ConjuntoNumeros.js/blob/main/conjuntonumeros.js" target="_blank" rel="noopener">Abrir Código</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="json">
+        <div class="card-body">
+          <h3>Cliente JSON</h3>
+          <p>Códigos passados no Classroom por: Robinho.</p>
+          <div class="card-actions">
+            <a class="btn" href="https://github.com/isabellyrss/cliente.json/blob/main/cliente.json" target="_blank" rel="noopener">Abrir Código</a>
           </div>
         </div>
       </article>
@@ -390,7 +433,7 @@
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 
-    // Pequena animação de entrada dos cards
+    // Animação de entrada dos cards
     window.addEventListener('load', () => {
       document.querySelectorAll('.card').forEach((c, i) => {
         c.style.transitionDelay = `${i * 60}ms`;
@@ -398,6 +441,32 @@
         requestAnimationFrame(() => {
           c.style.opacity = 1;
           c.style.transform = 'translateY(0)';
+        });
+      });
+    });
+
+    // Lógica do Filtro de Categorias
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove a classe 'active' de todos os botões e adiciona no botão clicado
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Pega qual filtro o usuário clicou (all, gamma, js, json)
+        const filterValue = btn.getAttribute('data-filter');
+
+        // Mostra ou esconde os cards dependendo da categoria
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          
+          if (filterValue === 'all' || cardCategory === filterValue) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
         });
       });
     });
