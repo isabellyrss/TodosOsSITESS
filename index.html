@@ -45,7 +45,7 @@
       /* Fundo animado Tema Escuro */
       background: linear-gradient(-45deg, #071025, #111827, #1e1b4b, #0f172a);
       background-size: 400% 400%;
-      animation: gradientMove 5s ease infinite;
+      animation: gradientMove 18s ease infinite;
       
       color: var(--text);
       -webkit-font-smoothing: antialiased;
@@ -88,8 +88,32 @@
     
     .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
     
+    /* --- ESTRUTURA DO NOME E ÍCONE --- */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Espaço entre a foto e os textos */
+    }
+
+    /* Foto do Personagem em formato de Flor */
+    .profile-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      /* Código CSS que recorta a imagem em formato de flor */
+      clip-path: polygon(50% 0%, 65% 15%, 90% 10%, 85% 35%, 100% 50%, 85% 65%, 90% 90%, 65% 85%, 50% 100%, 35% 85%, 10% 90%, 15% 65%, 0% 50%, 15% 35%, 10% 10%, 35% 15%);
+      /* Animação para rodar sem parar */
+      animation: spinFlower 10s linear infinite;
+    }
+
+    /* Animação de rotação */
+    @keyframes spinFlower {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
     /* Nome com degradê */
-    .brand h1 {
+    .brand-text h1 {
       margin: 0;
       font-size: 1.4rem;
       letter-spacing: 0.5px;
@@ -99,7 +123,8 @@
       font-weight: 800;
     }
     
-    .brand p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    .brand-text p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    /* --------------------------------- */
 
     /* Intro */
     .intro { padding: 1rem 0; }
@@ -293,16 +318,22 @@
       .intro .lead { max-width: 100%; }
       .card { min-height: 180px; }
       .modal-close { top: 10px; right: 20px; }
+      .brand { flex-direction: column; align-items: flex-start; gap: 8px; } /* Ajuste para celular */
     }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
+      
       <div class="brand">
-        <h1>Isabelly Ramos dos Santos</h1>
-        <p>Desenvolvimento de Sistemas — Portfólio</p>
+        <img src="mymelody.png" alt="Meu Personagem" class="profile-icon">
+        <div class="brand-text">
+          <h1>Isabelly Ramos dos Santos</h1>
+          <p>Desenvolvimento de Sistemas — Portfólio</p>
+        </div>
       </div>
+
       <div class="controls">
         <button id="themeToggle" class="btn icon">🌙</button>
       </div>
@@ -320,6 +351,7 @@
       <button class="filter-btn" data-filter="js">JS</button>
       <button class="filter-btn" data-filter="json">JSON</button>
       <button class="filter-btn" data-filter="expo">Expo</button>
+      <button class="filter-btn" data-filter="notebooklm">Notebook LM</button>
     </div>
 
     <section class="portfolio-grid" id="portfolio">
@@ -516,8 +548,8 @@
 
       <article class="card" data-category="expo">
         <div class="card-body">
-          <h3>Acesso ao App "Lista" (Expo)</h3>
-          <p>Clique no botão abaixo e escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
+          <h3>App Lista (Snack Expo)</h3>
+          <p>Escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
           <div class="card-actions">
             <button class="btn btn-visualizar" data-img="QRCODE.png">Visualizar</button>
           </div>
@@ -526,10 +558,21 @@
 
       <article class="card" data-category="expo">
         <div class="card-body">
-          <h3>Acesso ao App "Imagens trocadas"(Expo)</h3>
-          <p>Clique no botão abaixo e escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
+          <h3>App Imagens Trocadas (Snack Expo)</h3>
+          <p>Escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
           <div class="card-actions">
             <button class="btn btn-visualizar" data-img="QRCODE2.png">Visualizar</button>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="card" data-category="notebooklm">
+        <div class="card-body">
+          <h3>Projeto Notebook LM</h3>
+          <p>Clique em abrir para acessar e visualizar o conteúdo deste projeto.</p>
+          <div class="card-actions">
+            <a class="btn" href="https://notebooklm.google.com/notebook/386825d7-3ebf-4e5e-9538-323fa2be04e1/artifact/2fedd3ab-6edb-49b0-9ba8-d6ec48403f82?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_" target="_blank" rel="noopener">Abrir</a>
           </div>
         </div>
       </article>
@@ -609,9 +652,7 @@
       });
     });
 
-    // -----------------------------------------------------
     // Lógica do Modal (Ampliar Imagem)
-    // -----------------------------------------------------
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("expandedImg");
     const closeModal = document.querySelector(".modal-close");
