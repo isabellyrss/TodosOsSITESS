@@ -88,28 +88,10 @@
     
     .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
     
-    /* --- ESTRUTURA DO NOME E ÍCONE --- */
+    /* --- ESTRUTURA DO NOME --- */
     .brand {
       display: flex;
       align-items: center;
-      gap: 15px; /* Espaço entre a foto e os textos */
-    }
-
-    /* Foto do Personagem em formato de Flor */
-    .profile-icon {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      /* Código CSS que recorta a imagem em formato de flor */
-      clip-path: polygon(50% 0%, 65% 15%, 90% 10%, 85% 35%, 100% 50%, 85% 65%, 90% 90%, 65% 85%, 50% 100%, 35% 85%, 10% 90%, 15% 65%, 0% 50%, 15% 35%, 10% 10%, 35% 15%);
-      /* Animação para rodar sem parar */
-      animation: spinFlower 10s linear infinite;
-    }
-
-    /* Animação de rotação */
-    @keyframes spinFlower {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
     }
 
     /* Nome com degradê */
@@ -327,9 +309,8 @@
     <div class="container header-inner">
       
       <div class="brand">
-        <img src="mymelody.png" alt="Meu Personagem" class="profile-icon">
         <div class="brand-text">
-          <h1>Isabelly Ramos dos Santos</h1>
+          <h1>Isabelly Ramos dos Santos - 3A</h1>
           <p>Desenvolvimento de Sistemas — Portfólio</p>
         </div>
       </div>
@@ -342,8 +323,8 @@
 
   <main class="container">
     <section class="intro">
-      <h2>Meus projetos! </h2>
-      <p class="lead">Aqui estão alguns sites e códigos que criei (exercícios)! Clique em "Abrir" para ver o projeto em uma nova aba.</p>
+      <h2>Meus projetos de Analise, Back-End e Front-End! </h2>
+      <p class="lead">Aqui estão alguns sites, apps e códigos que criei (exercícios)! Estou sempre trabalhando para melhorar.</p>
     </section>
 
     <div class="filter-menu">
@@ -549,9 +530,9 @@
       <article class="card" data-category="expo">
         <div class="card-body">
           <h3>App Lista (Snack Expo)</h3>
-          <p>Escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
+          <p>Clique no botão "Abrir" abaixo para visualizar e escanear o QR Code do projeto.</p>
           <div class="card-actions">
-            <button class="btn btn-visualizar" data-img="QRCODE.png">Visualizar</button>
+            <button class="btn btn-visualizar" data-img="QRCODE.png">Abrir</button>
           </div>
         </div>
       </article>
@@ -559,9 +540,9 @@
       <article class="card" data-category="expo">
         <div class="card-body">
           <h3>App Imagens Trocadas (Snack Expo)</h3>
-          <p>Escaneie o QR Code abaixo para visualizar o aplicativo do projeto.</p>
+          <p>Clique no botão "Abrir" abaixo para visualizar e escanear o QR Code do projeto.</p>
           <div class="card-actions">
-            <button class="btn btn-visualizar" data-img="QRCODE2.png">Visualizar</button>
+            <button class="btn btn-visualizar" data-img="QRCODE2.png">Abrir</button>
           </div>
         </div>
       </article>
@@ -570,7 +551,7 @@
       <article class="card" data-category="notebooklm">
         <div class="card-body">
           <h3>Projeto Notebook LM</h3>
-          <p>Clique em abrir para acessar e visualizar o conteúdo deste projeto.</p>
+          <p>Clique em abrir para acessar e visualizar o conteúdo desse projeto.</p>
           <div class="card-actions">
             <a class="btn" href="https://notebooklm.google.com/notebook/386825d7-3ebf-4e5e-9538-323fa2be04e1/artifact/2fedd3ab-6edb-49b0-9ba8-d6ec48403f82?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_" target="_blank" rel="noopener">Abrir</a>
           </div>
